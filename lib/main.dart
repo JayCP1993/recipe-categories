@@ -55,10 +55,10 @@ class MyApp extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround, // SpaceAround for spacing
                 children: [
-                  CategoryItem(image: 'assets/images/beef.jpg', label: 'Beef'),
-                  CategoryItem(image: 'assets/images/chicken.jpg', label: 'Chicken'),
-                  CategoryItem(image: 'assets/images/pork.jpg', label: 'Pork'),
-                  CategoryItem(image: 'assets/images/seafood.jpg', label: 'Seafood'),
+                  CategoryItemCenter(image: 'assets/images/beef.jpg', label: 'Beef'),
+                  CategoryItemCenter(image: 'assets/images/chicken.jpg', label: 'Chicken'),
+                  CategoryItemCenter(image: 'assets/images/pork.jpg', label: 'Pork'),
+                  CategoryItemCenter(image: 'assets/images/seafood.jpg', label: 'Seafood'),
                 ],
               ),
 
@@ -113,7 +113,38 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// CategoryItem Widget with Stack() layout for image and text
+// CategoryItemCenter Widget for the By Meat section with centered text
+class CategoryItemCenter extends StatelessWidget {
+  final String image;
+  final String label;
+
+  CategoryItemCenter({required this.image, required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: Alignment.center, // Align text in the center of the image
+      children: [
+        CircleAvatar(
+          backgroundImage: AssetImage(image),
+          radius: 50, // Customize size of the image
+        ),
+        // Center the text within the CircleAvatar
+        Text(
+          label,
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 16, // Adjust font size if needed
+            backgroundColor: Colors.black45, // Optional: Add a semi-transparent background
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+// CategoryItem Widget with Stack() layout for image and text at the bottom
 class CategoryItem extends StatelessWidget {
   final String image;
   final String label;
